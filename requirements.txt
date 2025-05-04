@@ -1,0 +1,5 @@
+imapclient
+pyzmail36
+python-dotenv
+openai
+secure-smtplib
