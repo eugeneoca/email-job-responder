@@ -13,6 +13,7 @@ load_dotenv(dotenv_path="./.env")
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
 IMAP_SERVER = os.getenv("IMAP_SERVER")
+SMTP_SERVER = os.getenv("SMTP_SERVER")
 USER_FULLNAME= os.getenv("USER_FULLNAME")
 USER_CONTACT_INFO= os.getenv("USER_CONTACT_INFO")
 USER_JOB_TITLE= os.getenv("USER_JOB_TITLE")
@@ -71,7 +72,7 @@ def send_email_reply(to_address, subject, body, attachment_path, attachment_name
         file_data = f.read()
     msg.add_attachment(file_data, maintype='application', subtype='pdf', filename=attachment_name)
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+    with smtplib.SMTP_SSL(SMTP_SERVER, 465) as smtp:
         smtp.login(EMAIL, PASSWORD)
         smtp.send_message(msg)
 
